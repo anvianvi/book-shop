@@ -31,7 +31,7 @@
   document.getElementById('footer').innerHTML = footerOutput
 
 
-  fetch('books.json')
+  fetch('book-shop/books.json')
     .then((res) => res.json())
     .then((data) => {
       let output = '<div class="page-wrapper main-wrapper">'
