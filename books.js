@@ -1,6 +1,6 @@
-[
+const books = [
   {
-    "id": "1",
+    "id": "0",
     "author": "George Orwell",
     "imageLink": "./books-imgs/1984.jpg",
     "title": "1984",
@@ -10,7 +10,7 @@
     "amazon": "https://a.co/d/dYJeOE1"
   },
   {
-    "id": "2",
+    "id": "1",
     "author": "Stephen Hawking",
     "imageLink": "./books-imgs/a-brief-history-of-time.jpg",
     "title": "A Brief History of Time",
@@ -20,7 +20,7 @@
     "amazon": "https://a.co/d/6R5xVie"
   },
   {
-    "id": "3",
+    "id": "2",
     "author": "Dave Eggers",
     "imageLink": "./books-imgs/a-heartbreaking-work.jpg",
     "title": "A Heartbreaking Work of Staggering Genius",
@@ -30,7 +30,7 @@
     "amazon": "https://a.co/d/cbwuNaW"
   },
   {
-    "id": "4",
+    "id": "3",
     "author": "Ishmael Beah",
     "imageLink": "./books-imgs/a-long-way-gone.jpg",
     "title": "A Long Way Gone: Memoirs of a Boy Soldier",
@@ -40,7 +40,7 @@
     "amazon": "https://a.co/d/9NuGtyr"
   },
   {
-    "id": "5",
+    "id": "4",
     "author": "Lemony Snicket",
     "imageLink": "./books-imgs/the-bad-beginning.jpg",
     "title": "The Bad Beginning: Or, Orphans!",
@@ -50,7 +50,7 @@
     "amazon": "https://a.co/d/4UAcuOA"
   },
   {
-    "id": "6",
+    "id": "5",
     "author": "Madeleine L'Engle",
     "imageLink": "./books-imgs/a-wrinkle-in-time.jpg",
     "title": "A Wrinkle in Time",
@@ -60,7 +60,7 @@
     "amazon": "https://a.co/d/0WvL22p"
   },
   {
-    "id": "7",
+    "id": "6",
     "author": "Lewis Carroll",
     "imageLink": "./books-imgs/alice-adventures.jpg",
     "title": "Alice's Adventures in Wonderlands",
@@ -70,7 +70,7 @@
     "amazon": "https://a.co/d/0yZzti7"
   },
   {
-    "id": "8",
+    "id": "7",
     "author": "Bob Woodward",
     "imageLink": "./books-imgs/all-the-presidents-men.jpg",
     "title": "All the President's Men",
@@ -80,7 +80,7 @@
     "amazon": "https://a.co/d/3yRAjPW"
   },
   {
-    "id": "9",
+    "id": "8",
     "author": "Alice Munro",
     "imageLink": "./books-imgs/selected-stories.jpg",
     "title": "Selected Stories",
@@ -90,7 +90,7 @@
     "amazon": "https://a.co/d/5lU54nL"
   },
   {
-    "id": "10",
+    "id": "9",
     "author": "Frank McCourt",
     "imageLink": "./books-imgs/frank-mccourt.jpg",
     "title": "Angela's Ashes: A Memoir",

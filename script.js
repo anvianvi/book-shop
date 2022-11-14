@@ -1,14 +1,16 @@
-(function fetchData() {
+let bag = [];
 
-  let bodyOutput = `
+
+
+let bodyOutput = `
   <header class="header" id="header"></header>
-  <main class="main" id="main"></main>
+  <main class="main"><div class="page-wrapper main-wrapper" id="main"></div></main>
   <footer class="footer" id="footer"></footer>
   `
-  document.getElementById('body').innerHTML = bodyOutput
+document.getElementById('body').innerHTML = bodyOutput
 
 
-  let headerOutput = `<div class="page-wrapper header-wrapper">
+let headerOutput = `<div class="page-wrapper header-wrapper">
   <a href="#" class="logo"><img src="./icons/apple-touch-icon.png" alt=""></a>
   <nav>
     <ul class="header-nav">
@@ -17,80 +19,77 @@
       <li>menu 3</li>
     </ul>
   </nav>
-  <div class="headder-button">My Bag</div>
+  <div class="headder-button">My Bag ${bag.length}</div>
   </div>`
-  document.getElementById('header').innerHTML = headerOutput
+document.getElementById('header').innerHTML = headerOutput
 
 
-  let footerOutput = `
+let footerOutput = `
   <div class="page-wrapper footer-wrapper">
     <div>anvianvi</div>
     <div>2022</div>
     <div>rsschool</div>
   </div>`
-  document.getElementById('footer').innerHTML = footerOutput
+document.getElementById('footer').innerHTML = footerOutput
 
-
-  fetch('books.json')
-    .then((res) => res.json())
-    .then((data) => {
-      let output = '<div class="page-wrapper main-wrapper">'
-      data.forEach(function (item) {
-        output += `
-      <div class="book-card" id=${item.id}>
-        <img class="book-img" src=${item.imageLink} alt="bookimg">
+function renderMain() {
+  books.forEach((book) => {
+    document.getElementById('main').innerHTML += `
+      <div class="book-card" id=${book.id}>
+        <img class="book-img" src=${book.imageLink} alt="bookimg">
         <div class="book-description">
-          <div class="book-name">${item.title}</div>
-          <div class="author">${item.author}</div>
-          <div class="publication">${item.publication}</div>
-          <div class="prise">$ ${item.price}</div>
+          <div class="book-name">${book.title}</div>
+          <div class="author">${book.author}</div>
+          <div class="publication">${book.publication}</div>
+          <div class="prise">$ ${book.price}</div>
           <div class="button-block">
-            <a class="add-to-bag-btn" id="${item.id}btn">Add To Bag</a>
+            <a class="add-to-bag-btn" id="${book.id}btn" onclick="addToBag(${book.id})">Add To Bag</a>
           </div>
+        </div>
       </div>
-    </div>
 
-    <div class="popup" id="${item.id}popupcard">
-    <div class="popup-bg popup-exit"></div>
-    <div class="popup-container">
-      <div><img class="popup-img" src=${item.imageLink} alt="bookimg"></div>
-      <div class="popup-text">
-        <div class="popup-heading">${item.title}</div>
-        <div class="popupdescription">${item.description}</div>
+    <div class="popup" id="${book.id}popupcard">
+      <div class="popup-bg popup-exit"></div>
+      <div class="popup-container">
+        <div><img class="popup-img" src=${book.imageLink} alt="bookimg"></div>
+        <div class="popup-text">
+          <div class="popup-heading">${book.title}</div>
+          <div class="popupdescription">${book.description}</div>
+        </div>
+        <div class="popup-close popup-exit"></div>
       </div>
-      <div class="popup-close popup-exit"></div>
-    </div>
-   </div>
-    `
-      })
-      output += `</div>`
-      document.getElementById('main').innerHTML = output
+    </div>`;
+  })
+}
+renderMain()
 
-    })
-    .then(() => {
-      const bookCard = document.querySelectorAll('.book-card');
-      console.log(bookCard)
-      bookCard.forEach(function (item) {
-        item.addEventListener("click", function (event) {
+const bookCard = document.querySelectorAll('.book-card');
+
+bookCard.forEach(function (book) {
+  book.addEventListener("click", function (event) {
+    if (!event.target.classList.contains('add-to-bag-btn')) {
+      event.preventDefault();
+      const popUp = document.getElementById(`${book.id}popupcard`)
+      popUp.classList.add('open')
+      const exits = document.querySelectorAll(".popup-exit");
+      exits.forEach(function (exit) {
+        exit.addEventListener("click", function (event) {
           event.preventDefault();
-          const popUp = document.getElementById(`${item.id}popupcard`)
-          popUp.classList.add('open')
-          const exits = document.querySelectorAll(".popup-exit");
-          exits.forEach(function (exit) {
-            exit.addEventListener("click", function (event) {
-              event.preventDefault();
-              popUp.classList.remove("open");
-            });
-          })
-        })
-
+          popUp.classList.remove("open");
+        });
       })
+    }
+  })
+})
 
-    })
 
-    .catch((error) => {
-      console.log(`Error Fetching data : ${error}`)
-      document.getElementById('main').innerHTML = 'Error Loading Data'
-    })
+function addToBag(id) {
+  if (bag.some((item) => item.id == id)) {
 
-})();
+  } else {
+    const item = books.find((book) => book.id == id);
+    bag.push(item)
+    console.log(bag.length)
+  }
+
+}
