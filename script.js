@@ -17,7 +17,7 @@
       <li>menu 3</li>
     </ul>
   </nav>
-  <div class="headder-button">some button</div>
+  <div class="headder-button">My Bag</div>
   </div>`
   document.getElementById('header').innerHTML = headerOutput
 
@@ -30,8 +30,8 @@
   </div>`
   document.getElementById('footer').innerHTML = footerOutput
 
-
   fetch('book-shop/books.json')
+  // fetch('books.json')
     .then((res) => res.json())
     .then((data) => {
       let output = '<div class="page-wrapper main-wrapper">'
@@ -45,7 +45,7 @@
           <div class="publication">${item.publication}</div>
           <div class="prise">$ ${item.price}</div>
           <div class="button-block">
-            <a class="add-to-card-btn" id="${item.id}btn">Add To Card</a>
+            <a class="add-to-bag-btn" id="${item.id}btn">Add To Bag</a>
           </div>
       </div>
     </div>
@@ -53,9 +53,12 @@
     <div class="popup" id="${item.id}popupcard">
     <div class="popup-bg popup-exit"></div>
     <div class="popup-container">
-      <h1>${item.title}</h1>
-      <h2>${item.description}</h2>
-      <button class="popup-close popup-exit">X</button>
+      <div><img class="popup-img" src=${item.imageLink} alt="bookimg"></div>
+      <div class="popup-text">
+        <div class="popup-heading">${item.title}</div>
+        <div class="popupdescription">${item.description}</div>
+      </div>
+      <div class="popup-close popup-exit"></div>
     </div>
    </div>
     `
