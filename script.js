@@ -30,7 +30,8 @@
   </div>`
   document.getElementById('footer').innerHTML = footerOutput
 
-  fetch('book-shop/books.json')
+  fetch('http://anvianvi.github.io/book-shop/books.json')
+  // fetch('book-shop/books.json')
   // fetch('books.json')
     .then((res) => res.json())
     .then((data) => {
