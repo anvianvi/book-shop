@@ -240,6 +240,7 @@
   text-align: center;
 }
 .bag-books {
+  position: relative;
   display: grid;
   grid-template-columns: 3fr 1fr 0.7fr;
 }
@@ -326,4 +327,106 @@
 }
 .bag-chechout::hower {
   background: #0e70b1;
+}
+
+.bag-book-remove {
+  content: "\00d7";
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  background: #fff;
+  color: black;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+.bag-book-remove:hover {
+  opacity: 1;
+}
+.bag-book-remove:before,
+.bag-book-remove:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 25px;
+  width: 2px;
+  background-color: #333;
+}
+.bag-book-remove:before {
+  transform: rotate(45deg);
+}
+.bag-book-remove:after {
+  transform: rotate(-45deg);
+}
+
+/* ---------------------------------------------checkout-menu--------------------------------------------- */
+
+.checkout-wrapper {
+  box-sizing: border-box;
+  position: fixed;
+  width: 99vw;
+  top: 80px;
+  left: 20222px;
+  padding: 10px 1vw;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  height: 100vh;
+  z-index: 15;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.checkout-wrapper::-webkit-scrollbar {
+  width: 0;
+}
+.checkout-wrapper-open {
+  left: 1vw;
+}
+.checkout-content {
+}
+.order-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.order-name,
+.order-surname {
+  width: 230px;
+  margin: 5px 0;
+}
+
+.order-name:invalid,
+.order-surname:invalid {
+  border-right: lightcoral 6px solid;
+  outline: 0;
+}
+.order-name-message,
+.order-surname-message {
+  opacity: 0;
+  color: lightcoral;
+  margin: 0 0 10px;
+}
+.order-name:invalid + .order-name-message,
+.order-surname:invalid + .order-surname-message {
+  opacity: 1;
+}
+
+.order-form-submit {
+  margin: 20px;
+  width: 200px;
+  height: 50px;
+  border: 2px solid #9b51e0;
+  border-radius: 25px;
+  background: #9b51e0;
+  color: #fff;
+  outline: 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.order-form-submit:disabled {
+  background: #af88d3;
+  border: 2px solid #af88d3;
+  cursor: not-allowed;
 }
