@@ -1,5 +1,3 @@
-alert("hello, I will be very grateful for early comments so that I can correct as much as possible. However, I did not calculate the time to complete the order form, so I will ask for a final assessment as late as possible. THANKS")
-
 let bag = JSON.parse(localStorage.getItem("BAG")) || [];
 
 
@@ -80,7 +78,7 @@ function renderMain() {
       </div>
 
     <div class="popup" id="${book.id}popupcard">
-      <div class="popup-bg popup-exit" id="popup-bg" onclick="popupToggle()"></div>
+      <div class="popup-bg popup-exit" id="popup-bg" onclick="closePopupsBg()"></div>
       <div class="popup-container">
         <div><img class="popup-img" src=${book.imageLink} alt="bookimg"></div>
         <div class="popup-text">
@@ -94,11 +92,12 @@ function renderMain() {
 }
 renderMain()
 
-function popupToggle() {
-  document.getElementById('popup-bg').classList.toggle("open")
+function closePopupsBg() {
+  document.getElementById('popup-bg').classList.remove("open")
   document.getElementById("bag-wrapper").classList.remove("bag-wrapper-open");
-  document.getElementById("checkout-wrapper").classList.remove("checkout-wrapper-open");
   document.getElementById("body").classList.remove("body-hide-scroll")
+  document.getElementById("checkout-wrapper").classList.remove("checkout-wrapper-open");
+
 }
 const bookCard = document.querySelectorAll('.book-card');
 
@@ -115,7 +114,6 @@ bookCard.forEach(function (book) {
           event.preventDefault();
           popUp.classList.remove("open");
           document.getElementById("body").classList.remove("body-hide-scroll")
-
         });
       })
     }
@@ -226,7 +224,7 @@ function checkoutOutput() {
     </div>
   </div>
 `
-  document.getElementById('main').innerHTML += checkoutOutput
+  document.getElementById('footer').innerHTML += checkoutOutput
 }
 checkoutOutput()
 
@@ -256,5 +254,3 @@ function formState() {
 
 
 }
-
-

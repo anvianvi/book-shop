@@ -373,7 +373,7 @@
   border: 1px solid #e0e0e0;
   background: #fff;
   height: 100vh;
-  z-index: 15;
+  z-index: 1;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -382,6 +382,7 @@
 }
 .checkout-wrapper-open {
   left: 1vw;
+  z-index: 15;
 }
 .checkout-content {
 }
@@ -391,24 +392,28 @@
   padding: 20px;
 }
 .order-name,
-.order-surname {
+.order-surname,
+.order-date {
   width: 230px;
   margin: 5px 0;
 }
 
 .order-name:invalid,
-.order-surname:invalid {
+.order-surname:invalid,
+.order-date:invalid {
   border-right: lightcoral 6px solid;
   outline: 0;
 }
 .order-name-message,
-.order-surname-message {
+.order-surname-message,
+.order-date-message {
   opacity: 0;
   color: lightcoral;
   margin: 0 0 10px;
 }
 .order-name:invalid + .order-name-message,
-.order-surname:invalid + .order-surname-message {
+.order-surname:invalid + .order-surname-message,
+.order-date:invalid + .order-date-message {
   opacity: 1;
 }
 
