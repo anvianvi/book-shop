@@ -217,6 +217,10 @@ function checkoutOutput() {
       <input type="text" class="order-surname" id="form-surname" onkeyup="formState()" required pattern="^[A-Za-z]{5,}">
       <div class="order-surname-message">not less than 5 symbols, strings only, without spaces</div>
 
+      <label for="form-date">Date of delivery</label>
+      <input type="date" class="order-date" id="form-date" onkeyup="formState()" required>
+      <div class="order-date-message">we deliver within two weeks but not earlier than tomorrow</div>
+
       <input type="submit" class="order-form-submit" value="i will do my best" id="form-submit">
 
     </form>
@@ -225,6 +229,17 @@ function checkoutOutput() {
   </div>
 `
   document.getElementById('footer').innerHTML += checkoutOutput
+  let today = new Date();
+  let minDate = new Date(today.setDate(today.getDate() + 1)).toISOString().split("T")[0];
+  let maxDate = new Date(today.setDate(today.getDate() + 13)).toISOString().split("T")[0];
+
+  console.log(minDate);
+  document.getElementById("form-date").setAttribute('min', minDate);
+  document.getElementById("form-date").setAttribute('max', maxDate);
+
+
+
+
 }
 checkoutOutput()
 
@@ -242,9 +257,12 @@ const formSubmit = document.getElementById("form-submit")
 formSubmit.disabled = true
 
 function formState() {
-  // let nameRegex = ;
+  let nameRegex = /^[A-Za-z]{4,}/;
   let surnameRegex = /^[A-Za-z]{5,}/;
-  if (!formName.value.match(/^[A-Za-z]{4,}/) || !formSurname.value.match(surnameRegex)) {
+
+
+
+  if (!formName.value.match(nameRegex) || !formSurname.value.match(surnameRegex)) {
     formSubmit.disabled = true
     console.log('invalid')
   } else {

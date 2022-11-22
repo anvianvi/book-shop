@@ -395,7 +395,7 @@
 .order-surname,
 .order-date {
   width: 230px;
-  margin: 5px 0;
+  margin: 5px 0 7px;
 }
 
 .order-name:invalid,
@@ -405,16 +405,17 @@
   outline: 0;
 }
 .order-name-message,
-.order-surname-message,
-.order-date-message {
+.order-surname-message {
   opacity: 0;
   color: lightcoral;
-  margin: 0 0 10px;
+  margin: 0 0 13px;
 }
 .order-name:invalid + .order-name-message,
-.order-surname:invalid + .order-surname-message,
-.order-date:invalid + .order-date-message {
+.order-surname:invalid + .order-surname-message {
   opacity: 1;
+}
+.order-date-message {
+  margin: 0 0 13px;
 }
 
 .order-form-submit {
