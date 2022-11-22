@@ -201,11 +201,6 @@ function removeBookFromBag(id) {
   updateBag()
   renderHeaderOutput()
 }
-const nameRegex = /^[A-Za-z]{4,}/;
-const surnameRegex = /^[A-Za-z]{5,}/;
-const streetRegex = /^A-Za-z0-9\s]{5,}/;
-const houseNumberRegex = /^[0-9]{1,}/;
-const flatNumberRegex = /^[1-9]\d*(?: ?(?:|[/-] ?\d+?))?$/;
 
 function checkoutOutput() {
   let checkoutOutput = `
@@ -213,7 +208,7 @@ function checkoutOutput() {
     <div class="checkout-content">
       <form class="order-form">
        
-    <h2>Shipping Details</h2>
+    <div>Shipping Details</div>
 
       <label for="form-name">Name</label>
       <input type="text" class="order-input" id="form-name" onkeyup="formState()" required pattern="^[A-Za-z]{4,}">
@@ -227,7 +222,7 @@ function checkoutOutput() {
       <input type="date" class="order-input" id="form-date" onkeyup="formState()" required>
       <div class="date-message">we can deliver within two weeks but not earlier than tomorrow</div>
 
-    <h2>Address</h2>
+    <div>Address</div>
       <label for="form-street">Street</label>
       <input type="text" class="order-input" id="form-street" onkeyup="formState()" required pattern='^[A-Za-z0-9\\s]{5,}'>
       <div class="order-message">not less than 5 symbols, you can use letters, numbers, spaces</div>
@@ -242,16 +237,27 @@ function checkoutOutput() {
 
       
       <div class="payment-chouse-wrapper">
-      <h2>Choose payment method:</h2>
+      <div>Choose payment method:</div>
       <input type="radio" name="payment-chouse" id="cash" class="payment-card stiled-radio">
       <label for="monthly">Cash</label>
       <input type="radio" name="payment-chouse" id="card" class="payment-cash stiled-radio" checked>
       <label for="once">Card</label>
       </div>
 
-      <input type="submit" class="order-form-submit" value="i will do my best" id="form-submit">
+      <div class="gifts-wrapper">
+      <div>Please choose up to 2 gifts</div>
+      <input type="checkbox" name="gift_checkbox" value="1" onclick="return validateGiftSelecrion();">free pack<br>  
+      <input type="checkbox" name="gift_checkbox" value="2" onclick="return validateGiftSelecrion();">free postcard<br>  
+      <input type="checkbox" name="gift_checkbox" value="3" onclick="return validateGiftSelecrion();">2% discount for next time order<br> 
+      <input type="checkbox" name="gift_checkbox" value="4" onclick="return validateGiftSelecrion();">brand pen<br>
+      <input type="checkbox" name="gift_checkbox" value="5" onclick="return validateGiftSelecrion();">brand pencil<br>    
+      </div>
+
+
+      <div class="order-form-submit" id="form-submit" onclick="showSumarizedInformation()">Complete</div>
 
     </form>
+    <div class"summarized-information" id="summarized-information"></div>
 
     </div>
   </div>
@@ -282,14 +288,35 @@ const formSubmit = document.getElementById("form-submit")
 formSubmit.disabled = true
 
 function formState() {
+  const nameRegex = /[A-Za-z]{4,}/;
+  const surnameRegex = /[A-Za-z]{5,}/;
+  const streetRegex = /[A-Za-z0-9\s]{5,}/;
+  const houseNumberRegex = /[0-9]{1,}/;
+  const flatNumberRegex = /[1-9]\d*(?: ?(?:|[/-] ?\d+?))?$/;
 
-  if (!formName.value.match(nameRegex) || !formSurname.value.match(surnameRegex) || !formStreet.value.match(streetRegex) || !formHouseNumber.value.match(formHouseNumber) || !formFlatNumber.value.match(formFlatNumber)) {
+  if (!formName.value.match(nameRegex) || !formSurname.value.match(surnameRegex) || !formStreet.value.match(streetRegex) || !formHouseNumber.value.match(houseNumberRegex) || !formFlatNumber.value.match(flatNumberRegex)) {
     formSubmit.disabled = true
     console.log('invalid')
   } else {
     formSubmit.disabled = false
     console.log('valid')
   }
+}
 
+function validateGiftSelecrion() {
+  let checkboxes = document.getElementsByName("gift_checkbox");
+  let numberOfCheckedItems = 0;
+  for (let i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked)
+      numberOfCheckedItems++;
+  }
+  if (numberOfCheckedItems > 2) {
+    return false;
+  }
+}
+function showSumarizedInformation() {
+  console.log('click')
+  let showSumarizedInformation = `The delivery address is ${formStreet.value} street house ${formHouseNumber.value} flat ${formFlatNumber.value}. Customer ${formName.value} ${formSurname.value}`
+  document.getElementById("summarized-information").innerHTML = showSumarizedInformation
 
 }
