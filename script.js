@@ -201,25 +201,46 @@ function removeBookFromBag(id) {
   updateBag()
   renderHeaderOutput()
 }
+const nameRegex = /^[A-Za-z]{4,}/;
+const surnameRegex = /^[A-Za-z]{5,}/;
+const streetRegex = /^A-Za-z0-9\s]{5,}/;
+const houseNumberRegex = /^[0-9]{1,}/;
+const flatNumberRegex = /^[1-9]\d*(?: ?(?:|[/-] ?\d+?))?$/;
 
 function checkoutOutput() {
   let checkoutOutput = `
   <div class="checkout-wrapper" id="checkout-wrapper">
     <div class="checkout-content">
+    <div class="checkout-preview"></div>
 
     <form class="order-form">
+       
+    <h2>Shipping Details</h2>
 
       <label for="form-name">Name</label>
-      <input type="text" class="order-name" id="form-name" onkeyup="formState()" required pattern="^[A-Za-z]{4,}">
-      <div class="order-name-message">not less than 4 symbols, strings only, without spaces</div>
+      <input type="text" class="order-input" id="form-name" onkeyup="formState()" required pattern="^[A-Za-z]{4,}">
+      <div class="order-message">not less than 4 symbols, you can use letters only, without spaces</div>
         
       <label for="form-surname">Surname</label>
-      <input type="text" class="order-surname" id="form-surname" onkeyup="formState()" required pattern="^[A-Za-z]{5,}">
-      <div class="order-surname-message">not less than 5 symbols, strings only, without spaces</div>
+      <input type="text" class="order-input" id="form-surname" onkeyup="formState()" required pattern="^[A-Za-z]{5,}">
+      <div class="order-message">not less than 5 symbols, you can use letters only, without spaces</div>
 
       <label for="form-date">Date of delivery</label>
-      <input type="date" class="order-date" id="form-date" onkeyup="formState()" required>
-      <div class="order-date-message">we deliver within two weeks but not earlier than tomorrow</div>
+      <input type="date" class="order-input" id="form-date" onkeyup="formState()" required>
+      <div class="date-message">we can deliver within two weeks but not earlier than tomorrow</div>
+
+    <h2>Address</h2>
+      <label for="form-street">Street</label>
+      <input type="text" class="order-input" id="form-street" onkeyup="formState()" required pattern='^[A-Za-z0-9\\s]{5,}'>
+      <div class="order-message">not less than 5 symbols, you can use letters, numbers, spaces</div>
+
+      <label for="form-house-number">House number</label>
+      <input type="text" class="order-input" id="form-house-number" onkeyup="formState()" required pattern="^[0-9]{1,}">
+      <div class="order-message">You can use numbers only</div>
+
+      <label for="form-flat-number">Flat number</label>
+      <input type="text" class="order-input" id="flat-number" onkeyup="formState()" required pattern="^[1-9]\\d*(?: ?(?:|[/-] ?\\d+?))?$">
+      <div class="order-message">You can use numbers and dash</div>
 
       <input type="submit" class="order-form-submit" value="i will do my best" id="form-submit">
 
@@ -232,14 +253,8 @@ function checkoutOutput() {
   let today = new Date();
   let minDate = new Date(today.setDate(today.getDate() + 1)).toISOString().split("T")[0];
   let maxDate = new Date(today.setDate(today.getDate() + 13)).toISOString().split("T")[0];
-
-  console.log(minDate);
   document.getElementById("form-date").setAttribute('min', minDate);
   document.getElementById("form-date").setAttribute('max', maxDate);
-
-
-
-
 }
 checkoutOutput()
 
@@ -252,17 +267,16 @@ function openCheckOut() {
 
 const formName = document.getElementById("form-name")
 const formSurname = document.getElementById("form-surname")
+const formStreet = document.getElementById("form-street")
+const formHouseNumber = document.getElementById("form-house-number")
+const formFlatNumber = document.getElementById("")
 const formSubmit = document.getElementById("form-submit")
 
 formSubmit.disabled = true
 
 function formState() {
-  let nameRegex = /^[A-Za-z]{4,}/;
-  let surnameRegex = /^[A-Za-z]{5,}/;
 
-
-
-  if (!formName.value.match(nameRegex) || !formSurname.value.match(surnameRegex)) {
+  if (!formName.value.match(nameRegex) || !formSurname.value.match(surnameRegex) || !formStreet.value.match(streetRegex) || !formHouseNumber.value.match(formHouseNumber)) {
     formSubmit.disabled = true
     console.log('invalid')
   } else {
