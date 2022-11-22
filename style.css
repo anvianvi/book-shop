@@ -429,3 +429,28 @@
   border: 2px solid #af88d3;
   cursor: not-allowed;
 }
+.payment-chouse-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.stiled-radio {
+  cursor: pointer;
+  appearance: none;
+  border-radius: 50%;
+  background: transparent;
+  border: 6px solid transparent;
+  outline: 3px solid #9b51e0;
+  margin: 0 5px 0 25px;
+}
+.stiled-radio:checked {
+  border: 6px solid #9b51e0;
+  outline: 3px solid #9b51e0;
+  background: #9b51e0;
+}
+.payment-chouse-wrapper label {
+  font-size: 18px;
+}
+.payment-chouse-wrapper input[type="radio"]:checked + label {
+  color: #9b51e0;
+}

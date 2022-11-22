@@ -211,9 +211,7 @@ function checkoutOutput() {
   let checkoutOutput = `
   <div class="checkout-wrapper" id="checkout-wrapper">
     <div class="checkout-content">
-    <div class="checkout-preview"></div>
-
-    <form class="order-form">
+      <form class="order-form">
        
     <h2>Shipping Details</h2>
 
@@ -242,6 +240,15 @@ function checkoutOutput() {
       <input type="text" class="order-input" id="flat-number" onkeyup="formState()" required pattern="^[1-9]\\d*(?: ?(?:|[/-] ?\\d+?))?$">
       <div class="order-message">You can use numbers and dash</div>
 
+      
+      <div class="payment-chouse-wrapper">
+      <h2>Choose payment method:</h2>
+      <input type="radio" name="payment-chouse" id="cash" class="payment-card stiled-radio">
+      <label for="monthly">Cash</label>
+      <input type="radio" name="payment-chouse" id="card" class="payment-cash stiled-radio" checked>
+      <label for="once">Card</label>
+      </div>
+
       <input type="submit" class="order-form-submit" value="i will do my best" id="form-submit">
 
     </form>
@@ -269,14 +276,14 @@ const formName = document.getElementById("form-name")
 const formSurname = document.getElementById("form-surname")
 const formStreet = document.getElementById("form-street")
 const formHouseNumber = document.getElementById("form-house-number")
-const formFlatNumber = document.getElementById("")
+const formFlatNumber = document.getElementById("flat-number")
 const formSubmit = document.getElementById("form-submit")
 
 formSubmit.disabled = true
 
 function formState() {
 
-  if (!formName.value.match(nameRegex) || !formSurname.value.match(surnameRegex) || !formStreet.value.match(streetRegex) || !formHouseNumber.value.match(formHouseNumber)) {
+  if (!formName.value.match(nameRegex) || !formSurname.value.match(surnameRegex) || !formStreet.value.match(streetRegex) || !formHouseNumber.value.match(formHouseNumber) || !formFlatNumber.value.match(formFlatNumber)) {
     formSubmit.disabled = true
     console.log('invalid')
   } else {
