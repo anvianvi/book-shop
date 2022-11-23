@@ -37,7 +37,7 @@ function renderHeaderOutput() {
   let headerOutput = `
   <div class="page-wrapper header-wrapper">
     <a href="#" class="logo"><img src="./icons/apple-touch-icon.png" alt=""></a>
-    <div class="headder-button"  onclick="toggleBag()">
+    <div class="headder-button"  onclick="toggleBag()" ondrop="drop(event)" ondragover="allowDrop(event)">
       <lord-icon
         src="https://cdn.lordicon.com/slkvcfos.json"
         trigger="click"
@@ -70,8 +70,8 @@ document.getElementById('footer').innerHTML = footerOutput
 function renderMain() {
   books.forEach((book) => {
     document.getElementById('main').innerHTML += `
-      <div class="book-card" id=${book.id}>
-        <img class="book-img" src=${book.imageLink} alt="bookimg">
+      <div class="book-card" id=${book.id} draggable="true" ondragstart="drag(event)">
+        <img class="book-img" src=${book.imageLink} alt="bookimg" draggable="false">
         <div class="book-description">
           <div class="book-name">${book.title}</div>
           <div class="author">${book.author}</div>
@@ -353,4 +353,19 @@ function showSumarizedInformation() {
   let showSumarizedInformation = `The delivery address is ${formStreet.value} street house ${formHouseNumber.value} flat ${formFlatNumber.value}. Customer ${formName.value} ${formSurname.value}`
   document.getElementById("summarized-information").innerHTML = showSumarizedInformation
 
+}
+
+function allowDrop(event) {
+  event.preventDefault();
+}
+
+function drag(event) {
+  event.dataTransfer.setData("text", event.target.id);
+}
+
+function drop(event) {
+  event.preventDefault();
+  let data = event.
+  dataTransfer.getData("text");
+  addToBag(+document.getElementById(data).id)
 }
