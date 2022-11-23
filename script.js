@@ -37,8 +37,14 @@ function renderHeaderOutput() {
   let headerOutput = `
   <div class="page-wrapper header-wrapper">
     <a href="#" class="logo"><img src="./icons/apple-touch-icon.png" alt=""></a>
-
-    <div class="headder-button"  onclick="toggleBag()">My Bag ${totalAmountOfBooks}</div>
+    <div class="headder-button"  onclick="toggleBag()">
+      <lord-icon
+        src="https://cdn.lordicon.com/slkvcfos.json"
+        trigger="click"
+        colors="primary:#121331,secondary:#9b51e0"
+        style="width:75px;height:75px">
+      </lord-icon><span>${totalAmountOfBooks}</span>
+    </div>
   </div>
   `
   document.getElementById('header').innerHTML = headerOutput
@@ -47,17 +53,17 @@ renderHeaderOutput()
 
 
 function toggleBag() {
-  document.getElementById("bag-wrapper").classList.add("bag-wrapper-open");
-  document.getElementById("popup-bg").classList.add("open")
-  document.getElementById("body").classList.add("body-hide-scroll")
+  document.getElementById("bag-wrapper").classList.toggle("bag-wrapper-open");
+  document.getElementById("popup-bg").classList.toggle("open")
+  document.getElementById("body").classList.toggle("body-hide-scroll")
 }
 
 
 let footerOutput = `
   <div class="page-wrapper footer-wrapper">
-    <div>anvianvi</div>
+    <div><a href="https://github.com/anvianvi" target="_blank" class="footer-link">my github</a></div>
     <div>2022</div>
-    <div>rsschool</div>
+    <div><a href="https://github.com/rolling-scopes-school/js-fe-course-en" target="_blank" class="footer-link">rsschool</a></div>
   </div>`
 document.getElementById('footer').innerHTML = footerOutput
 
@@ -207,52 +213,52 @@ function checkoutOutput() {
   <div class="checkout-wrapper" id="checkout-wrapper">
     <div class="checkout-content">
       <form class="order-form">
-       
-    <div>Shipping Details</div>
+       <div class="order-form-left>
+        <div>Shipping Details</div>
+          <label for="form-name">Name</label>
+          <input type="text" class="order-input" id="form-name" onkeyup="formState()" required pattern="^[A-Za-z]{4,}">
+          <div class="order-message">not less than 4 symbols, you can use letters only, without spaces</div>
+            
+          <label for="form-surname">Surname</label>
+          <input type="text" class="order-input" id="form-surname" onkeyup="formState()" required pattern="^[A-Za-z]{5,}">
+          <div class="order-message">not less than 5 symbols, you can use letters only, without spaces</div>
 
-      <label for="form-name">Name</label>
-      <input type="text" class="order-input" id="form-name" onkeyup="formState()" required pattern="^[A-Za-z]{4,}">
-      <div class="order-message">not less than 4 symbols, you can use letters only, without spaces</div>
-        
-      <label for="form-surname">Surname</label>
-      <input type="text" class="order-input" id="form-surname" onkeyup="formState()" required pattern="^[A-Za-z]{5,}">
-      <div class="order-message">not less than 5 symbols, you can use letters only, without spaces</div>
+          <label for="form-date">Date of delivery</label>
+          <input type="date" class="order-input" id="form-date" onkeyup="formState()" required>
+          <div class="date-message">we can deliver within two weeks but not earlier than tomorrow</div>
 
-      <label for="form-date">Date of delivery</label>
-      <input type="date" class="order-input" id="form-date" onkeyup="formState()" required>
-      <div class="date-message">we can deliver within two weeks but not earlier than tomorrow</div>
+        <div>Address</div>
+          <label for="form-street">Street</label>
+          <input type="text" class="order-input" id="form-street" onkeyup="formState()" required pattern='^[A-Za-z0-9\\s]{5,}'>
+          <div class="order-message">not less than 5 symbols, you can use letters, numbers, spaces</div>
 
-    <div>Address</div>
-      <label for="form-street">Street</label>
-      <input type="text" class="order-input" id="form-street" onkeyup="formState()" required pattern='^[A-Za-z0-9\\s]{5,}'>
-      <div class="order-message">not less than 5 symbols, you can use letters, numbers, spaces</div>
+          <label for="form-house-number">House number</label>
+          <input type="text" class="order-input" id="form-house-number" onkeyup="formState()" required pattern="^[0-9]{1,}">
+          <div class="order-message">You can use numbers only</div>
 
-      <label for="form-house-number">House number</label>
-      <input type="text" class="order-input" id="form-house-number" onkeyup="formState()" required pattern="^[0-9]{1,}">
-      <div class="order-message">You can use numbers only</div>
-
-      <label for="form-flat-number">Flat number</label>
-      <input type="text" class="order-input" id="flat-number" onkeyup="formState()" required pattern="^[1-9]\\d*(?: ?(?:|[/-] ?\\d+?))?$">
-      <div class="order-message">You can use numbers and dash</div>
-
-      
-      <div class="payment-chouse-wrapper">
-      <div>Choose payment method:</div>
-      <input type="radio" name="payment-chouse" id="cash" class="payment-card stiled-radio">
-      <label for="monthly">Cash</label>
-      <input type="radio" name="payment-chouse" id="card" class="payment-cash stiled-radio" checked>
-      <label for="once">Card</label>
+          <label for="form-flat-number">Flat number</label>
+          <input type="text" class="order-input" id="flat-number" onkeyup="formState()" required pattern="^[1-9]\\d*(?: ?(?:|[/-] ?\\d+?))?$">
+          <div class="order-message">You can use numbers and dash</div>
       </div>
 
-      <div class="gifts-wrapper">
-      <div>Please choose up to 2 gifts</div>
-      <input type="checkbox" name="gift_checkbox" value="1" onclick="return validateGiftSelecrion();">free pack<br>  
-      <input type="checkbox" name="gift_checkbox" value="2" onclick="return validateGiftSelecrion();">free postcard<br>  
-      <input type="checkbox" name="gift_checkbox" value="3" onclick="return validateGiftSelecrion();">2% discount for next time order<br> 
-      <input type="checkbox" name="gift_checkbox" value="4" onclick="return validateGiftSelecrion();">brand pen<br>
-      <input type="checkbox" name="gift_checkbox" value="5" onclick="return validateGiftSelecrion();">brand pencil<br>    
-      </div>
+      <div class="order-form-right>
+        <div class="payment-chouse-wrapper">
+          <div>Choose payment method:</div>
+          <input type="radio" name="payment-chouse" id="cash" class="payment-card stiled-radio">
+          <label for="monthly">Cash</label>
+          <input type="radio" name="payment-chouse" id="card" class="payment-cash stiled-radio" checked>
+          <label for="once">Card</label>
+        </div>
 
+        <div class="gifts-wrapper">
+        <div>Please choose up to 2 gifts</div>
+        <input type="checkbox" name="gift_checkbox" value="1" onclick="return validateGiftSelecrion();">free pack<br>  
+        <input type="checkbox" name="gift_checkbox" value="2" onclick="return validateGiftSelecrion();">free postcard<br>  
+        <input type="checkbox" name="gift_checkbox" value="3" onclick="return validateGiftSelecrion();">2% discount for next time order<br> 
+        <input type="checkbox" name="gift_checkbox" value="4" onclick="return validateGiftSelecrion();">brand pen<br>
+        <input type="checkbox" name="gift_checkbox" value="5" onclick="return validateGiftSelecrion();">brand pencil<br>    
+        </div>
+      </div>
 
       <div class="order-form-submit" id="form-submit" onclick="showSumarizedInformation()">Complete</div>
 
