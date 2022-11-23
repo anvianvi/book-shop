@@ -4,9 +4,9 @@ let bag = JSON.parse(localStorage.getItem("BAG")) || [];
 let bodyOutput = `
   <header class="header" id="header"></header>
   <main class="main"><div class="page-wrapper main-wrapper" id="main"></div></main>
-  <footer class="footer" id="footer"></footer>
   `
 document.getElementById('body').innerHTML = bodyOutput
+
 
 function renderBag() {
   let bagOutput = `
@@ -58,14 +58,22 @@ function toggleBag() {
   document.getElementById("body").classList.toggle("body-hide-scroll")
 }
 
+function renderFooter() {
+  const fragment = new DocumentFragment();
+  const footer = document.createElement('footer');
 
-let footerOutput = `
+  footer.classList.add('footer');
+  footer.innerHTML = `
   <div class="page-wrapper footer-wrapper">
-    <div><a href="https://github.com/anvianvi" target="_blank" class="footer-link">my github</a></div>
-    <div>2022</div>
-    <div><a href="https://github.com/rolling-scopes-school/js-fe-course-en" target="_blank" class="footer-link">rsschool</a></div>
+  <div><a href="https://github.com/anvianvi" target="_blank" class="footer-link">my github</a></div>
+  <div>2022</div>
+  <div><a href="https://github.com/rolling-scopes-school/js-fe-course-en" target="_blank" class="footer-link">rsschool</a></div>
   </div>`
-document.getElementById('footer').innerHTML = footerOutput
+
+  fragment.appendChild(footer);
+  document.getElementById('body').appendChild(fragment);
+}
+renderFooter()
 
 function renderMain() {
   books.forEach((book) => {
@@ -292,7 +300,7 @@ function checkoutOutput() {
     </div>
   </div>
 `
-  document.getElementById('footer').innerHTML += checkoutOutput
+  document.querySelector('.footer').innerHTML += checkoutOutput
   let today = new Date();
   let minDate = new Date(today.setDate(today.getDate() + 1)).toISOString().split("T")[0];
   let maxDate = new Date(today.setDate(today.getDate() + 13)).toISOString().split("T")[0];
@@ -366,6 +374,6 @@ function drag(event) {
 function drop(event) {
   event.preventDefault();
   let data = event.
-  dataTransfer.getData("text");
+    dataTransfer.getData("text");
   addToBag(+document.getElementById(data).id)
 }
