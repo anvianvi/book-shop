@@ -44,16 +44,20 @@
   position: relative;
   cursor: pointer;
   user-select: none;
-  z-index: 10;
 }
 .headder-button span {
   color: #9b51e0;
   font-weight: 500;
   position: absolute;
-  left: 28px;
-  top: 22px;
+  left: 61px;
+  top: 0px;
   font-size: 21px;
-  z-index: 1;
+  border: 2px solid;
+  border-radius: 50%;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ---------------------------------------------main--------------------------------------------- */
@@ -401,6 +405,10 @@
 .order-form {
   padding: 20px;
 }
+.order-form-left {
+}
+.order-form-right {
+}
 .order-input {
   width: 230px;
   margin: 5px 0 7px;
@@ -461,5 +469,3 @@
 .payment-chouse-wrapper input[type="radio"]:checked + label {
   color: #9b51e0;
 }
-
-
