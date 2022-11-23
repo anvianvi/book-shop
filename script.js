@@ -211,26 +211,30 @@ function removeBookFromBag(id) {
 function checkoutOutput() {
   let checkoutOutput = `
   <div class="checkout-wrapper" id="checkout-wrapper">
+  <div class="summarized-information" id="summarized-information"></div>
+
     <div class="checkout-content">
-      <form class="order-form">
-       <div class="order-form-left>
-        <div>Shipping Details</div>
+      <form class="order-form-top">
+       <div class="order-form-left">
+        <div class="form-heading">Shipping Details:</div>
           <label for="form-name">Name</label>
           <input type="text" class="order-input" id="form-name" onkeyup="formState()" required pattern="^[A-Za-z]{4,}">
-          <div class="order-message">not less than 4 symbols, you can use letters only, without spaces</div>
+          <div class="order-message">Not less than 4 symbols, you can use letters only, without spaces</div>
             
           <label for="form-surname">Surname</label>
           <input type="text" class="order-input" id="form-surname" onkeyup="formState()" required pattern="^[A-Za-z]{5,}">
-          <div class="order-message">not less than 5 symbols, you can use letters only, without spaces</div>
+          <div class="order-message">Not less than 5 symbols, you can use letters only, without spaces</div>
 
           <label for="form-date">Date of delivery</label>
-          <input type="date" class="order-input" id="form-date" onkeyup="formState()" required>
-          <div class="date-message">we can deliver within two weeks but not earlier than tomorrow</div>
+          <input type="date" class="order-input" id="form-date" onfocusout="formState()" required>
+          <div class="order-message">We can deliver within two weeks but not earlier than tomorrow</div>
+      </div>
 
-        <div>Address</div>
+      <div class="order-form-right">
+        <div class="form-heading">Address:</div>
           <label for="form-street">Street</label>
           <input type="text" class="order-input" id="form-street" onkeyup="formState()" required pattern='^[A-Za-z0-9\\s]{5,}'>
-          <div class="order-message">not less than 5 symbols, you can use letters, numbers, spaces</div>
+          <div class="order-message">Not less than 5 symbols, you can use letters, numbers, spaces</div>
 
           <label for="form-house-number">House number</label>
           <input type="text" class="order-input" id="form-house-number" onkeyup="formState()" required pattern="^[0-9]{1,}">
@@ -239,32 +243,52 @@ function checkoutOutput() {
           <label for="form-flat-number">Flat number</label>
           <input type="text" class="order-input" id="flat-number" onkeyup="formState()" required pattern="^[1-9]\\d*(?: ?(?:|[/-] ?\\d+?))?$">
           <div class="order-message">You can use numbers and dash</div>
+
       </div>
-
-      <div class="order-form-right>
-        <div class="payment-chouse-wrapper">
-          <div>Choose payment method:</div>
-          <input type="radio" name="payment-chouse" id="cash" class="payment-card stiled-radio">
-          <label for="monthly">Cash</label>
-          <input type="radio" name="payment-chouse" id="card" class="payment-cash stiled-radio" checked>
-          <label for="once">Card</label>
-        </div>
-
-        <div class="gifts-wrapper">
-        <div>Please choose up to 2 gifts</div>
-        <input type="checkbox" name="gift_checkbox" value="1" onclick="return validateGiftSelecrion();">free pack<br>  
-        <input type="checkbox" name="gift_checkbox" value="2" onclick="return validateGiftSelecrion();">free postcard<br>  
-        <input type="checkbox" name="gift_checkbox" value="3" onclick="return validateGiftSelecrion();">2% discount for next time order<br> 
-        <input type="checkbox" name="gift_checkbox" value="4" onclick="return validateGiftSelecrion();">brand pen<br>
-        <input type="checkbox" name="gift_checkbox" value="5" onclick="return validateGiftSelecrion();">brand pencil<br>    
-        </div>
-      </div>
-
-      <div class="order-form-submit" id="form-submit" onclick="showSumarizedInformation()">Complete</div>
-
     </form>
-    <div class"summarized-information" id="summarized-information"></div>
 
+    <div class="order-form-bottom">
+      <div class="order-form-left">
+        <div class="gifts-wrapper">
+        <div class="form-heading">Please choose up to 2 gifts</div>
+
+        <label class="form-checkbox-label">
+          <input type="checkbox" name="gift_checkbox" value="0" onclick="return validateGiftSelecrion();" class="form-checkbox">
+          Free pack
+        </label>
+        <label class="form-checkbox-label">
+          <input type="checkbox" name="gift_checkbox" value="1" onclick="return validateGiftSelecrion();" class="form-checkbox">
+          Free postcard
+        </label>
+        <label class="form-checkbox-label">
+          <input type="checkbox" name="gift_checkbox" value="2" onclick="return validateGiftSelecrion();" class="form-checkbox">
+          2% discount for next time order
+        </label>
+        <label class="form-checkbox-label">
+          <input type="checkbox" name="gift_checkbox" value="3" onclick="return validateGiftSelecrion();" class="form-checkbox">
+          Our brand pen
+        </label>
+        <label class="form-checkbox-label">
+          <input type="checkbox" name="gift_checkbox" value="4" onclick="return validateGiftSelecrion();" class="form-checkbox">
+          Our brand pencil
+        </label>
+ 
+        </div>
+      </div>
+
+      <div class="order-form-right">
+        <div class="payment-chouse-wrapper">
+        <div class="payment-heading">Choose payment method:</div>
+        <input type="radio" name="payment-chouse" id="cash" class="payment-card stiled-radio">
+        <label for="cash" class="stiled-radio-lable">Cash</label>
+        <input type="radio" name="payment-chouse" id="card" class="payment-cash stiled-radio" checked>
+        <label for="card" class="stiled-radio-lable">Card</label>
+        </div>
+
+        <div class="submit-wrapper"><input type="submit" class="order-form-submit" id="form-submit" value="Complete" onclick="showSumarizedInformation()"></div>
+      </div>
+    </div>
+    
     </div>
   </div>
 `
@@ -286,6 +310,7 @@ function openCheckOut() {
 
 const formName = document.getElementById("form-name")
 const formSurname = document.getElementById("form-surname")
+const formDate = document.getElementById("form-date")
 const formStreet = document.getElementById("form-street")
 const formHouseNumber = document.getElementById("form-house-number")
 const formFlatNumber = document.getElementById("flat-number")
@@ -300,7 +325,7 @@ function formState() {
   const houseNumberRegex = /[0-9]{1,}/;
   const flatNumberRegex = /[1-9]\d*(?: ?(?:|[/-] ?\d+?))?$/;
 
-  if (!formName.value.match(nameRegex) || !formSurname.value.match(surnameRegex) || !formStreet.value.match(streetRegex) || !formHouseNumber.value.match(houseNumberRegex) || !formFlatNumber.value.match(flatNumberRegex)) {
+  if (!formName.value.match(nameRegex) || !formSurname.value.match(surnameRegex) || !formStreet.value.match(streetRegex) || !formHouseNumber.value.match(houseNumberRegex) || !formFlatNumber.value.match(flatNumberRegex) || formDate.value == '') {
     formSubmit.disabled = true
     console.log('invalid')
   } else {
@@ -321,6 +346,9 @@ function validateGiftSelecrion() {
   }
 }
 function showSumarizedInformation() {
+  console.log(formDate.value)
+  console.log(formDate.value == '')
+  console.log(typeof formDate.value)
   console.log('click')
   let showSumarizedInformation = `The delivery address is ${formStreet.value} street house ${formHouseNumber.value} flat ${formFlatNumber.value}. Customer ${formName.value} ${formSurname.value}`
   document.getElementById("summarized-information").innerHTML = showSumarizedInformation

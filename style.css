@@ -400,18 +400,36 @@
   z-index: 15;
 }
 .checkout-content {
-  display: flex;
 }
-.order-form {
-  padding: 20px;
+.order-form-top,
+.order-form-bottom {
+  display: flex;
+  gap: 2vw;
+  margin: 0 auto;
+  width: 82vw;
 }
 .order-form-left {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
 }
 .order-form-right {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+}
+.form-heading {
+  font-size: 21px;
+  font-weight: 600;
+  margin: 0 0 5px;
+}
+.payment-heading {
+  font-size: 21px;
+  font-weight: 600;
 }
 .order-input {
   width: 230px;
-  margin: 5px 0 7px;
+  margin: 0px 0 5px;
 }
 .order-input:invalid {
   border-right: lightcoral 6px solid;
@@ -420,16 +438,13 @@
 .order-message {
   opacity: 0;
   color: lightcoral;
-  margin: 0 0 13px;
+  margin: 0 0 3px 10px;
+  font-size: 15px;
 }
 .order-input:invalid + .order-message {
   opacity: 1;
 }
-.date-message {
-  margin: 0 0 13px;
-}
 .order-form-submit {
-  margin: 20px;
   width: 200px;
   height: 50px;
   border: 2px solid #9b51e0;
@@ -445,6 +460,12 @@
   border: 2px solid #af88d3;
   cursor: not-allowed;
 }
+.submit-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 100%;
+}
 .payment-chouse-wrapper {
   display: flex;
   align-items: center;
@@ -456,16 +477,41 @@
   background: transparent;
   border: 6px solid transparent;
   outline: 3px solid #9b51e0;
-  margin: 0 5px 0 25px;
+  margin: 0 5px 0 10px;
 }
 .stiled-radio:checked {
   border: 6px solid #9b51e0;
   outline: 3px solid #9b51e0;
   background: #9b51e0;
 }
+.stiled-radio-lable {
+  margin: 0px 10px 0;
+}
 .payment-chouse-wrapper label {
   font-size: 18px;
 }
 .payment-chouse-wrapper input[type="radio"]:checked + label {
+  color: #9b51e0;
+}
+.gifts-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.form-checkbox {
+  height: 16px;
+  width: 16px;
+  margin: 0 5px 0 0;
+}
+.form-checkbox-label {
+  margin: 1px 0 2px;
+  user-select: none;
+}
+.summarized-information {
+  margin: 0 auto;
+  width: 82vw;
+  height: 30px;
+  font-size: 25px;
+  font-weight: 800;
+  text-align: center;
   color: #9b51e0;
 }
