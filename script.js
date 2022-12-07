@@ -134,7 +134,6 @@ bookCard.forEach(function (book) {
   })
 })
 
-
 function addToBag(id) {
   if (bag.some((item) => item.id === id)) {
     changeNumberOfUnits("plus", id)
@@ -308,7 +307,6 @@ function checkoutOutput() {
   document.getElementById("form-date").setAttribute('max', maxDate);
 }
 checkoutOutput()
-
 
 function openCheckOut() {
   document.getElementById("checkout-wrapper").classList.add("checkout-wrapper-open");
